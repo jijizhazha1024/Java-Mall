@@ -9,8 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>douyin</groupId>
-    <artifactId>user-service</artifactId>
+    <artifactId>auth-service</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

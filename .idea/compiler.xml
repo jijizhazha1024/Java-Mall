@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="auth-service" />
+        <module name="cart-service" />
+        <module name="pay-service" />
+        <module name="trade-service" />
+        <module name="item-service" />
+        <module name="user-service" />
+        <module name="mall-common" />
+        <module name="mall-api" />
+        <module name="mall-gateway" />
+      </profile>
+      <profile name="Annotation profile for mall" enabled="true">
+        <sourceOutputDir name="../auth-service/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../auth-service/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="checkout-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="17">
+      <module name="people-service" target="17" />
+      <module name="user-service (1)" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-service" options="-parameters" />
+      <module name="cart-service" options="-parameters" />
+      <module name="checkout-service" options="-parameters" />
+      <module name="item-service" options="-parameters" />
+      <module name="mall-api" options="-parameters" />
+      <module name="mall-common" options="-parameters" />
+      <module name="mall-gateway" options="-parameters" />
+      <module name="pay-service" options="-parameters" />
+      <module name="people-service" options="-parameters" />
+      <module name="trade-service" options="-parameters" />
+      <module name="user-service" options="-parameters" />
+      <module name="user-service (1)" options="-parameters" />
+    </option>
+  </component>
+</project>

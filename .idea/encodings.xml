@@ -2,7 +2,9 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/mall-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-service/auth-service/src/main/java" charset="UTF-8" />
@@ -19,7 +21,6 @@
     <file url="file://$PROJECT_DIR$/mall-service/trade-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-service/trade-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-service/user-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mall-service/user-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />

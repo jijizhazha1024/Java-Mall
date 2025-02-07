@@ -1,4 +1,4 @@
-package utils;
+package com.douyin.mall.auth.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +12,11 @@ public class Result {
     private String msg;
     private Object data;
     private Long code;
+
+
+    public static Result success(Object data) {
+        return new Result("Success", data, 200L);
+    }
 
     public static Result ok(){
         return new Result(null, null, null);

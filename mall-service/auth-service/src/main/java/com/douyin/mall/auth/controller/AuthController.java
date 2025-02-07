@@ -2,6 +2,7 @@ package com.douyin.mall.auth.controller;
 
 import com.douyin.mall.auth.service.AuthService;
 import com.douyin.mall.auth.util.JwtUtil;
+import com.douyin.mall.auth.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -29,24 +30,14 @@ public class AuthController {
      */
     @ApiOperation(value = "生成令牌", notes = "根据用户ID生成 JWT 令牌。")
     @PostMapping("/tokens")
-    public Map<String, Object> generateToken(Integer userId) {
+    public Result generateToken(Integer userId) {
         log.info("Token generation request received for user_id: {}", userId);
-        // 这里假设authService.authenticate可以根据userId进行认证
-        if (authService.authenticate(userId)) {
-            String token = jwtUtil.generateToken(userId.toString());
-            Map<String, Object> response = new HashMap<>();
-            response.put("Code", 200);
-            response.put("Msg", "Success");
-            Map<String, String> data = new HashMap<>();
-            data.put("Token", token);
-            response.put("Data", data);
-            return response;
-        } else {
-            Map<String, Object> response = new HashMap<>();
-            response.put("Code", 401);
-            response.put("Msg", "Invalid credentials");
-            return response;
-        }
+
+        String token = jwtUtil.generateToken(userId.toString());
+        Map<String, String> data = new HashMap<>();
+        data.put("Token", token);
+
+        return Result.success(data);
     }
 
     /**
@@ -57,22 +48,15 @@ public class AuthController {
     @ApiOperation(value = "令牌续期", notes = "对有效的 JWT 令牌进行续期，生成新的令牌。")
 
     @PostMapping("/tokens/renew")
-    public Map<String, Object> renewToken(String token) {
+    public Result renewToken(String token) {
         if (jwtUtil.validateToken(token)) {
             String userId = jwtUtil.getUserIdFromToken(token);
             String newToken = jwtUtil.generateRefreshToken(userId);
-            Map<String, Object> response = new HashMap<>();
-            response.put("Code", 200);
-            response.put("Msg", "Success");
             Map<String, String> data = new HashMap<>();
             data.put("Token", newToken);
-            response.put("Data", data);
-            return response;
+            return Result.success(data);
         } else {
-            Map<String, Object> response = new HashMap<>();
-            response.put("Code", 401);
-            response.put("Msg", "Invalid token");
-            return response;
+            return null;
         }
     }
 
@@ -83,14 +67,11 @@ public class AuthController {
      */
     @ApiOperation(value = "验证令牌", notes = "验证 JWT 令牌的有效性。")
     @PostMapping("/tokens/verify")
-    public Map<String, Object> verifyToken(String token) {
+    public Result verifyToken(String token) {
         boolean isValid = jwtUtil.validateToken(token);
-        Map<String, Object> response = new HashMap<>();
-        response.put("Code", 200);
-        response.put("Msg", "Success");
         Map<String, Boolean> data = new HashMap<>();
         data.put("Valid", isValid);
-        response.put("Data", data);
-        return response;
+
+        return Result.success(data);
     }
 }

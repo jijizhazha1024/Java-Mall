@@ -1,5 +1,5 @@
 server:
-  port: 8128
+  port: 10000
 #  servlet:
 #    context-path: /douyin # 只有http://localhost:8128/douyin 的请求才能访问到后端接口
 spring:

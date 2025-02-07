@@ -17,11 +17,11 @@ jwt:
 knife4j:
   enable: true
   openapi:
-    title: Knife4j官方文档
+    title: 认证服务api文档
     version: v1.0
     group:
       test1:
         group-name: 默认分组
         api-rule: package
         api-rule-resources:
-          - com.douyin.mall.authservice.controller
+          - com.douyin.mall.auth.controller

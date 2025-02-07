@@ -1,6 +1,7 @@
 package com.douyin.mall.auth.controller;
 
 import com.douyin.mall.auth.service.AuthService;
+import com.douyin.mall.auth.util.ErrorCode;
 import com.douyin.mall.auth.util.JwtUtil;
 import com.douyin.mall.auth.util.Result;
 import io.swagger.annotations.Api;
@@ -33,6 +34,10 @@ public class AuthController {
     public Result generateToken(Integer userId) {
         log.info("Token generation request received for user_id: {}", userId);
 
+        if(userId == null){
+            return Result.error(ErrorCode.AUTH_INFO_EMPTY); //认证信息为空
+        }
+
         String token = jwtUtil.generateToken(userId.toString());
         Map<String, String> data = new HashMap<>();
         data.put("Token", token);
@@ -46,9 +51,12 @@ public class AuthController {
      * @return 包含新令牌的响应
      */
     @ApiOperation(value = "令牌续期", notes = "对有效的 JWT 令牌进行续期，生成新的令牌。")
-
     @PostMapping("/tokens/renew")
     public Result renewToken(String token) {
+        if(token == null || token.isEmpty()){
+            return Result.error(ErrorCode.TOKEN_EXPIRED_OR_NOT_EXIST); //令牌过期或不存在
+        }
+
         if (jwtUtil.validateToken(token)) {
             String userId = jwtUtil.getUserIdFromToken(token);
             String newToken = jwtUtil.generateRefreshToken(userId);
@@ -56,7 +64,7 @@ public class AuthController {
             data.put("Token", newToken);
             return Result.success(data);
         } else {
-            return null;
+            return Result.error(ErrorCode.TOKEN_RENEWAL_FAILED); //令牌续期失败
         }
     }
 
@@ -68,9 +76,17 @@ public class AuthController {
     @ApiOperation(value = "验证令牌", notes = "验证 JWT 令牌的有效性。")
     @PostMapping("/tokens/verify")
     public Result verifyToken(String token) {
+        if(token == null || token.isEmpty()){
+            return Result.error(ErrorCode.TOKEN_EXPIRED_OR_NOT_EXIST);
+        }
+
         boolean isValid = jwtUtil.validateToken(token);
         Map<String, Boolean> data = new HashMap<>();
         data.put("Valid", isValid);
+
+        if(!isValid){
+            return Result.error(ErrorCode.TOKEN_INVALID); //令牌无效
+        }
 
         return Result.success(data);
     }

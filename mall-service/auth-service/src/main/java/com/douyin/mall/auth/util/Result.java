@@ -18,6 +18,10 @@ public class Result {
         return new Result("Success", data, 200L);
     }
 
+    public static Result error(ErrorCode errorCode){
+        return new Result(errorCode.getMsg(), null, errorCode.getCode());
+    }
+
     public static Result ok(){
         return new Result(null, null, null);
     }

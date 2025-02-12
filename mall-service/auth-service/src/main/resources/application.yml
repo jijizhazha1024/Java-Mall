@@ -1,0 +1,27 @@
+server:
+  port: 10000
+#  servlet:
+#    context-path: /douyin # 只有http://localhost:8128/douyin 的请求才能访问到后端接口
+spring:
+  application:
+    name: auth-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 114.55.117.175:8848
+jwt:
+  secret: U3ByaW5nSGVsbG9Xb3JsZCFXZSBzZWUgaW4gR29vZCBGb3JjZQ== # 符合 HS512 安全要求的密钥，用于生成和验证令牌
+  expiration: 3600000 # 令牌过期时间，单位：毫秒
+  refreshExpiration: 7200000 # 刷新令牌过期时间，单位：毫秒
+
+knife4j:
+  enable: true
+  openapi:
+    title: 认证服务api文档
+    version: v1.0
+    group:
+      test1:
+        group-name: 默认分组
+        api-rule: package
+        api-rule-resources:
+          - com.douyin.mall.auth.controller
